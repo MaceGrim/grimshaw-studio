@@ -1,0 +1,84 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Mason Grimshaw - AI Strategy & Implementation' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-cream text-navy min-h-screen font-sans antialiased">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-navy text-cream shadow-lg">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <a href="/" class="text-xl font-bold tracking-tight text-cream hover:text-burnt-orange transition-colors">
+            Grimshaw Studio
+          </a>
+          <div class="hidden sm:flex items-center space-x-8">
+            <a href="/" class="text-cream/80 hover:text-burnt-orange transition-colors text-sm font-medium">Home</a>
+            <a href="#about" class="text-cream/80 hover:text-burnt-orange transition-colors text-sm font-medium">About</a>
+            <a href="#work" class="text-cream/80 hover:text-burnt-orange transition-colors text-sm font-medium">Work</a>
+            <a href="#contact" class="text-cream/80 hover:text-burnt-orange transition-colors text-sm font-medium">Contact</a>
+          </div>
+          <!-- Mobile menu button -->
+          <button
+            id="mobile-menu-btn"
+            class="sm:hidden text-cream hover:text-burnt-orange transition-colors"
+            aria-label="Toggle menu"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden sm:hidden pb-4">
+          <a href="/" class="block py-2 text-cream/80 hover:text-burnt-orange transition-colors text-sm font-medium">Home</a>
+          <a href="#about" class="block py-2 text-cream/80 hover:text-burnt-orange transition-colors text-sm font-medium">About</a>
+          <a href="#work" class="block py-2 text-cream/80 hover:text-burnt-orange transition-colors text-sm font-medium">Work</a>
+          <a href="#contact" class="block py-2 text-cream/80 hover:text-burnt-orange transition-colors text-sm font-medium">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-navy-dark text-cream/70 py-12">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+          <p class="text-sm">&copy; {new Date().getFullYear()} Grimshaw Studio. All rights reserved.</p>
+          <div class="flex space-x-6">
+            <a href="#" class="text-cream/50 hover:text-burnt-orange transition-colors text-sm">LinkedIn</a>
+            <a href="#" class="text-cream/50 hover:text-burnt-orange transition-colors text-sm">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      btn?.addEventListener('click', () => {
+        menu?.classList.toggle('hidden');
+      });
+    </script>
+  </body>
+</html>

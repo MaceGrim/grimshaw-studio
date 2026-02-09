@@ -1,0 +1,156 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Grimshaw Studio | AI Strategy & Implementation">
+  <!-- Hero Section -->
+  <section class="relative bg-navy text-cream py-24 sm:py-32">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="text-burnt-orange font-semibold text-sm uppercase tracking-widest mb-4">AI Strategy & Implementation</p>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+          Building AI that
+          <span class="text-burnt-orange">actually works</span>
+          in production.
+        </h1>
+        <p class="text-lg sm:text-xl text-cream/80 leading-relaxed mb-8">
+          Practical AI consulting for organizations that need results, not slide decks.
+          From strategy to deployment, focused on what ships.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a
+            href="#work"
+            class="inline-flex items-center justify-center px-6 py-3 bg-burnt-orange text-cream font-semibold rounded-lg hover:bg-burnt-orange-light transition-colors"
+          >
+            See the Work
+          </a>
+          <a
+            href="#contact"
+            class="inline-flex items-center justify-center px-6 py-3 border-2 border-cream/30 text-cream font-semibold rounded-lg hover:border-burnt-orange hover:text-burnt-orange transition-colors"
+          >
+            Get in Touch
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- Decorative accent -->
+    <div class="absolute bottom-0 left-0 right-0 h-1 bg-burnt-orange"></div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 sm:py-24 bg-cream">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="text-burnt-orange font-semibold text-sm uppercase tracking-widest mb-4">About</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-navy mb-6">
+          AI that serves people, not the other way around.
+        </h2>
+        <p class="text-lg text-navy/70 leading-relaxed mb-4">
+          I'm Mason Grimshaw -- husband, dad to 4, Sicangu Lakota from the Rosebud Reservation, and a Data Scientist/AI Engineer at
+          <a href="https://ode.partners" class="text-burnt-orange hover:underline">Ode Partners</a>.
+        </p>
+        <p class="text-lg text-navy/70 leading-relaxed mb-4">
+          I'm the Vice President of <a href="https://www.indigi-genius.com" class="text-burnt-orange hover:underline">IndigiGenius</a>,
+          where we empower Indigenous communities in computer science and machine learning,
+          and a co-founder of the <a href="https://lakota.aicode.camp" class="text-burnt-orange hover:underline">Lakota AI Code Camp</a>.
+        </p>
+        <p class="text-lg text-navy/70 leading-relaxed">
+          I work at the intersection of enterprise AI systems and community-centered technology.
+          Every project starts with the same question: what problem are we actually solving?
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 mt-16">
+        <div class="bg-white rounded-xl p-8 shadow-sm border border-cream-dark">
+          <div class="w-12 h-12 bg-burnt-orange/10 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-burnt-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-navy mb-2">Enterprise AI</h3>
+          <p class="text-navy/60 leading-relaxed">
+            Production-grade AI systems that deliver measurable value. Strategy, architecture, and implementation.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-sm border border-cream-dark">
+          <div class="w-12 h-12 bg-burnt-orange/10 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-burnt-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-navy mb-2">Tribal AI</h3>
+          <p class="text-navy/60 leading-relaxed">
+            Community-led technology for Indigenous nations. Sovereignty-first, capacity building, practical tools.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-sm border border-cream-dark">
+          <div class="w-12 h-12 bg-burnt-orange/10 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-burnt-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-navy mb-2">Deep Dives</h3>
+          <p class="text-navy/60 leading-relaxed">
+            Technical explorations and experiments. Building things from scratch to understand how they work.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Section -->
+  <section id="work" class="py-20 sm:py-24 bg-cream-dark">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="text-burnt-orange font-semibold text-sm uppercase tracking-widest mb-4">Work</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-navy mb-6">
+          Recent projects and writing.
+        </h2>
+        <p class="text-lg text-navy/70 leading-relaxed mb-12">
+          A selection of work spanning enterprise AI, Indigenous technology, and technical deep dives.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-xl p-8 shadow-sm border border-cream-dark hover:shadow-md transition-shadow">
+          <span class="inline-block px-3 py-1 bg-burnt-orange/10 text-burnt-orange text-xs font-semibold rounded-full mb-4">Enterprise AI</span>
+          <h3 class="text-xl font-bold text-navy mb-2">Coming Soon</h3>
+          <p class="text-navy/60 leading-relaxed">
+            Featured projects and case studies will appear here as the studio grows.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-sm border border-cream-dark hover:shadow-md transition-shadow">
+          <span class="inline-block px-3 py-1 bg-burnt-orange/10 text-burnt-orange text-xs font-semibold rounded-full mb-4">Writing</span>
+          <h3 class="text-xl font-bold text-navy mb-2">Coming Soon</h3>
+          <p class="text-navy/60 leading-relaxed">
+            Blog posts and articles on AI strategy, tribal tech, and technical deep dives.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 sm:py-24 bg-navy text-cream">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mx-auto text-center">
+        <p class="text-burnt-orange font-semibold text-sm uppercase tracking-widest mb-4">Contact</p>
+        <h2 class="text-3xl sm:text-4xl font-bold mb-6">
+          Let's build something that matters.
+        </h2>
+        <p class="text-lg text-cream/70 leading-relaxed mb-8">
+          Whether you need AI strategy, implementation support, or want to collaborate on something interesting, reach out.
+        </p>
+        <a
+          href="mailto:hello@grimshaw.studio"
+          class="inline-flex items-center justify-center px-8 py-4 bg-burnt-orange text-cream font-semibold rounded-lg hover:bg-burnt-orange-light transition-colors text-lg"
+        >
+          Get in Touch
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grimshaw Studio - p5.js Template</title>
+  <!--
+    ============================================================
+    usage instructions
+    ============================================================
+    This is a reusable p5.js visualization template for
+    Grimshaw Studio. It uses the brand color palette and
+    provides a starting point for generative/interactive visuals.
+
+    Brand Colors:
+      Burnt Orange (accent):   #CC5500
+      Dark Navy (primary):     #1B2A4A
+      Cream (background):      #FFF8F0
+
+    How to use:
+      1. Copy this file and rename it for your project.
+      2. Modify the setup() and draw() functions below.
+      3. The brand colors are available as global variables:
+         - BURNT_ORANGE
+         - DARK_NAVY
+         - CREAM
+      4. The canvas auto-sizes to fill the container.
+      5. Open the file directly in a browser or embed in a page.
+
+    Dependencies:
+      - p5.js loaded from CDN (included in this file)
+    ============================================================
+  -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #FFF8F0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+    #sketch-container {
+      border: 2px solid #1B2A4A;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div id="sketch-container"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+  <script>
+    // ---- Brand Colors ----
+    var BURNT_ORANGE, DARK_NAVY, CREAM;
+
+    // ---- Particle System ----
+    var particles = [];
+    var NUM_PARTICLES = 60;
+
+    function setup() {
+      var cnv = createCanvas(600, 400);
+      cnv.parent('sketch-container');
+
+      // Initialize brand colors as p5 color objects
+      BURNT_ORANGE = color('#CC5500');
+      DARK_NAVY = color('#1B2A4A');
+      CREAM = color('#FFF8F0');
+
+      // Create initial particles
+      for (var i = 0; i < NUM_PARTICLES; i++) {
+        particles.push(createParticle(random(width), random(height)));
+      }
+    }
+
+    function draw() {
+      background(DARK_NAVY);
+
+      // Update and draw particles
+      for (var i = particles.length - 1; i >= 0; i--) {
+        var p = particles[i];
+        updateParticle(p);
+        drawParticle(p);
+
+        // Remove dead particles
+        if (p.life <= 0) {
+          particles.splice(i, 1);
+        }
+      }
+
+      // Replenish particles
+      while (particles.length < NUM_PARTICLES) {
+        particles.push(createParticle(random(width), random(height)));
+      }
+    }
+
+    function createParticle(x, y) {
+      var palette = [BURNT_ORANGE, CREAM];
+      return {
+        x: x,
+        y: y,
+        vx: random(-0.8, 0.8),
+        vy: random(-0.8, 0.8),
+        size: random(3, 10),
+        col: random(palette),
+        life: random(120, 300),
+        maxLife: 0
+      };
+    }
+
+    function updateParticle(p) {
+      if (p.maxLife === 0) p.maxLife = p.life;
+
+      // Gentle noise-driven movement
+      var angle = noise(p.x * 0.005, p.y * 0.005, frameCount * 0.005) * TWO_PI * 2;
+      p.vx += cos(angle) * 0.05;
+      p.vy += sin(angle) * 0.05;
+
+      // Dampen velocity
+      p.vx *= 0.99;
+      p.vy *= 0.99;
+
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Wrap around edges
+      if (p.x < 0) p.x = width;
+      if (p.x > width) p.x = 0;
+      if (p.y < 0) p.y = height;
+      if (p.y > height) p.y = 0;
+
+      p.life--;
+    }
+
+    function drawParticle(p) {
+      var alpha = map(p.life, 0, p.maxLife, 0, 200);
+      var c = color(red(p.col), green(p.col), blue(p.col), alpha);
+      noStroke();
+      fill(c);
+      ellipse(p.x, p.y, p.size, p.size);
+    }
+  </script>
+</body>
+</html>

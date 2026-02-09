@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grimshaw Studio - D3.js Template</title>
+  <!--
+    ============================================================
+    usage instructions
+    ============================================================
+    This is a reusable D3.js visualization template for
+    Grimshaw Studio. It uses the brand color palette and
+    provides a starting point for data-driven visuals.
+
+    Brand Colors:
+      Burnt Orange (accent):   #CC5500
+      Dark Navy (primary):     #1B2A4A
+      Cream (background):      #FFF8F0
+
+    How to use:
+      1. Copy this file and rename it for your project.
+      2. Replace the sample data in the DATA array with your own.
+      3. Modify the chart dimensions, scales, and rendering
+         logic below to fit your visualization needs.
+      4. Brand colors are defined as constants at the top
+         of the script section.
+      5. Open the file directly in a browser or embed in a page.
+
+    Dependencies:
+      - D3.js v7 loaded from CDN (included in this file)
+    ============================================================
+  -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #FFF8F0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #3D3D3D;
+    }
+    #chart-container {
+      background-color: #FFF8F0;
+      padding: 20px;
+    }
+    .chart-title {
+      font-size: 18px;
+      font-weight: 600;
+      fill: #1B2A4A;
+    }
+    .axis-label {
+      font-size: 12px;
+      fill: #3D3D3D;
+    }
+    .axis line,
+    .axis path {
+      stroke: #E8DFD0;
+    }
+    .axis text {
+      fill: #3D3D3D;
+      font-size: 11px;
+    }
+    .bar:hover {
+      opacity: 0.85;
+    }
+    .value-label {
+      font-size: 11px;
+      fill: #FFF8F0;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div id="chart-container"></div>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script>
+    // ---- Brand Colors ----
+    var BURNT_ORANGE = '#CC5500';
+    var DARK_NAVY = '#1B2A4A';
+    var CREAM = '#FFF8F0';
+    var WARM_CHARCOAL = '#3D3D3D';
+    var MUTED_SAND = '#E8DFD0';
+
+    // ---- Sample Data ----
+    var DATA = [
+      { label: 'Strategy', value: 85 },
+      { label: 'Design', value: 72 },
+      { label: 'Development', value: 93 },
+      { label: 'Analytics', value: 68 },
+      { label: 'Content', value: 81 },
+      { label: 'Outreach', value: 56 }
+    ];
+
+    // ---- Chart Dimensions ----
+    var margin = { top: 50, right: 30, bottom: 50, left: 80 };
+    var width = 600 - margin.left - margin.right;
+    var height = 400 - margin.top - margin.bottom;
+
+    // ---- Create SVG ----
+    var svg = d3.select('#chart-container')
+      .append('svg')
+      .attr('width', width + margin.left + margin.right)
+      .attr('height', height + margin.top + margin.bottom)
+      .append('g')
+      .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+    // ---- Title ----
+    svg.append('text')
+      .attr('class', 'chart-title')
+      .attr('x', width / 2)
+      .attr('y', -20)
+      .attr('text-anchor', 'middle')
+      .text('Project Metrics Overview');
+
+    // ---- Scales ----
+    var xScale = d3.scaleBand()
+      .domain(DATA.map(function(d) { return d.label; }))
+      .range([0, width])
+      .padding(0.3);
+
+    var yScale = d3.scaleLinear()
+      .domain([0, 100])
+      .range([height, 0]);
+
+    // ---- Color Scale ----
+    var colorScale = d3.scaleOrdinal()
+      .domain(DATA.map(function(d) { return d.label; }))
+      .range([DARK_NAVY, BURNT_ORANGE, DARK_NAVY, BURNT_ORANGE, DARK_NAVY, BURNT_ORANGE]);
+
+    // ---- X Axis ----
+    svg.append('g')
+      .attr('class', 'axis')
+      .attr('transform', 'translate(0,' + height + ')')
+      .call(d3.axisBottom(xScale))
+      .selectAll('text')
+      .style('text-anchor', 'middle');
+
+    // ---- Y Axis ----
+    svg.append('g')
+      .attr('class', 'axis')
+      .call(d3.axisLeft(yScale).ticks(5).tickFormat(function(d) { return d + '%'; }));
+
+    // ---- Y Axis Label ----
+    svg.append('text')
+      .attr('class', 'axis-label')
+      .attr('transform', 'rotate(-90)')
+      .attr('y', -50)
+      .attr('x', -(height / 2))
+      .attr('text-anchor', 'middle')
+      .text('Completion');
+
+    // ---- Bars ----
+    svg.selectAll('.bar')
+      .data(DATA)
+      .enter()
+      .append('rect')
+      .attr('class', 'bar')
+      .attr('x', function(d) { return xScale(d.label); })
+      .attr('y', function(d) { return yScale(d.value); })
+      .attr('width', xScale.bandwidth())
+      .attr('height', function(d) { return height - yScale(d.value); })
+      .attr('fill', function(d) { return colorScale(d.label); })
+      .attr('rx', 2)
+      .attr('ry', 2);
+
+    // ---- Value Labels ----
+    svg.selectAll('.value-label')
+      .data(DATA)
+      .enter()
+      .append('text')
+      .attr('class', 'value-label')
+      .attr('x', function(d) { return xScale(d.label) + xScale.bandwidth() / 2; })
+      .attr('y', function(d) { return yScale(d.value) + 18; })
+      .attr('text-anchor', 'middle')
+      .text(function(d) { return d.value + '%'; });
+  </script>
+</body>
+</html>

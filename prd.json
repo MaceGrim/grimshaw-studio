@@ -1,0 +1,378 @@
+{
+  "project": "Grimshaw Studio",
+  "generated_from": "PRD.md",
+  "generated_at": "2026-02-01T23:12:00Z",
+  "stories": [
+    {
+      "id": "US-001",
+      "title": "Initialize Repository Structure",
+      "description": "As a content creator I want to have a complete folder structure with all required directories and placeholder files so that Claude Code can immediately navigate and operate within the system.",
+      "acceptance_criteria": [
+        "BRAND/ directory exists with voice.md, pillars.md, style.md, do-dont.md, audience.md",
+        "BRAND/visuals/ directory exists with palette.md, typography.md",
+        "BRAND/visuals/components/ directory exists",
+        "BRAND/examples/ directory exists",
+        "BACKLOG/ directory exists with ideas.yaml, series.yaml, parking-lot.md",
+        "PROJECTS/ directory exists",
+        "PROMPTS/ directory exists with all prompt files",
+        "PROMPTS/skills/ directory exists",
+        "scripts/ directory exists",
+        "scripts/fixtures/ directory exists",
+        "Makefile exists",
+        "README.md exists",
+        ".github/workflows/ directory exists"
+      ],
+      "test_command": "test -d BRAND && test -f BRAND/voice.md && test -f BRAND/pillars.md && test -d PROMPTS/skills && test -d scripts/fixtures && test -f Makefile && test -f README.md && echo 'PASS'",
+      "priority": "P0",
+      "passes": false
+    },
+    {
+      "id": "US-002",
+      "title": "Initialize Astro Site",
+      "description": "As a content creator I want to have a working Astro site in SITE/ so that content can be built and previewed locally.",
+      "acceptance_criteria": [
+        "SITE/package.json exists and contains astro in dependencies",
+        "SITE/package.json contains tailwindcss in dependencies",
+        "SITE/tailwind.config exists",
+        "npm install completes with exit code 0",
+        "npm run build completes with exit code 0",
+        "SITE/dist/ directory is created after build"
+      ],
+      "test_command": "cd SITE && grep -q '\"astro\"' package.json && npm install && npm run build && test -d dist && echo 'PASS'",
+      "priority": "P0",
+      "passes": false
+    },
+    {
+      "id": "US-003",
+      "title": "Migrate Existing Content Collections",
+      "description": "As a content creator I want to have my existing talks, portfolio, and publications migrated to Astro content collections so that my existing content is preserved and accessible.",
+      "acceptance_criteria": [
+        "SITE/src/content/talks/ directory exists with .md files",
+        "SITE/src/content/portfolio/ directory exists with .md files",
+        "SITE/src/content/publications/ directory exists with .md files",
+        "SITE/src/content/config.ts defines schemas for talks, portfolio, publications, blog",
+        "SITE/public/artifacts/legacy/ directory exists",
+        "Site builds without errors"
+      ],
+      "test_command": "cd SITE && test -d src/content/talks && test -d src/content/portfolio && test -f src/content/config.ts && test -d public/artifacts/legacy && npm run build && echo 'PASS'",
+      "priority": "P0",
+      "passes": false
+    },
+    {
+      "id": "US-004",
+      "title": "Configure GitHub Actions Deployment",
+      "description": "As a content creator I want to have automated deployment to macegrim.github.io so that publishing is a single command.",
+      "acceptance_criteria": [
+        ".github/workflows/deploy.yml exists",
+        "Workflow triggers on push to main branch",
+        "Workflow uses DEPLOY_TOKEN secret (not hardcoded)",
+        "README.md documents DEPLOY_TOKEN setup"
+      ],
+      "test_command": "test -f .github/workflows/deploy.yml && grep -q 'DEPLOY_TOKEN' .github/workflows/deploy.yml && grep -q 'DEPLOY_TOKEN' README.md && echo 'PASS'",
+      "priority": "P1",
+      "passes": false
+    },
+    {
+      "id": "US-005",
+      "title": "Create Voice Guidelines",
+      "description": "As Claude Code I want to read comprehensive voice guidelines from BRAND/voice.md so that all generated content matches Mason's distinctive voice.",
+      "acceptance_criteria": [
+        "voice.md contains Tone section with slider settings",
+        "voice.md contains all four signature moves with examples",
+        "voice.md contains Taboos section listing AI hype, savior framing, performative futurism",
+        "voice.md contains Nuance section explaining when taboo topics ARE okay",
+        "voice.md contains at least 3 example sentences demonstrating voice"
+      ],
+      "test_command": "grep -q 'Tone:' BRAND/voice.md && grep -q 'Systems thinking' BRAND/voice.md && grep -q 'Taboos:' BRAND/voice.md && grep -q 'Nuance:' BRAND/voice.md && echo 'PASS'",
+      "priority": "P0",
+      "passes": false
+    },
+    {
+      "id": "US-006",
+      "title": "Create Content Pillars Document",
+      "description": "As Claude Code I want to read content pillars from BRAND/pillars.md so that generated ideas align with strategic positioning.",
+      "acceptance_criteria": [
+        "pillars.md contains Enterprise AI lane with Audience field",
+        "pillars.md contains Tribal AI lane with Audience field",
+        "pillars.md contains Deep Dives lane with Audience field",
+        "pillars.md contains Experiments lane with Audience field",
+        "pillars.md contains section on how content supports speaking positioning"
+      ],
+      "test_command": "grep -q 'Enterprise AI' BRAND/pillars.md && grep -q 'Tribal AI' BRAND/pillars.md && grep -q 'speaking' BRAND/pillars.md && echo 'PASS'",
+      "priority": "P0",
+      "passes": false
+    },
+    {
+      "id": "US-007",
+      "title": "Create Audience Profiles",
+      "description": "As Claude Code I want to read audience profiles from BRAND/audience.md so that content targets the right readers.",
+      "acceptance_criteria": [
+        "audience.md defines primary audience with Goals, Pain points, Looking for sections",
+        "audience.md mentions CTO, VP Engineering, or AI leads",
+        "audience.md defines secondary audience (practitioners)",
+        "audience.md defines tertiary audience (tribal communities)"
+      ],
+      "test_command": "grep -q 'Goals:' BRAND/audience.md && grep -qE '(CTO|VP|decision-maker)' BRAND/audience.md && grep -q 'tribal' BRAND/audience.md && echo 'PASS'",
+      "priority": "P1",
+      "passes": false
+    },
+    {
+      "id": "US-008",
+      "title": "Create Visual Style Guide",
+      "description": "As Claude Code I want to read visual guidelines from BRAND/visuals/ so that generated artifacts match Mason's aesthetic.",
+      "acceptance_criteria": [
+        "palette.md defines at least 3 colors with hex codes",
+        "typography.md specifies heading and body font families",
+        "Three visual modes defined: playful, technical, minimal"
+      ],
+      "test_command": "test $(grep -cE '#[0-9A-Fa-f]{6}' BRAND/visuals/palette.md) -ge 3 && grep -q 'heading' BRAND/visuals/typography.md && echo 'PASS'",
+      "priority": "P1",
+      "passes": false
+    },
+    {
+      "id": "US-009",
+      "title": "Create Ideation Prompt",
+      "description": "As Claude Code I want to have clear instructions in PROMPTS/10-ideate.md so that I can generate on-brand ideas.",
+      "acceptance_criteria": [
+        "10-ideate.md begins with instruction to read BRAND files first",
+        "10-ideate.md explains web search can be used for zeitgeist topics",
+        "10-ideate.md defines scoring criteria: brand_fit, novelty, artifact_potential, effort",
+        "10-ideate.md shows exact YAML format for ideas.yaml entries"
+      ],
+      "test_command": "grep -q 'Read BRAND' PROMPTS/10-ideate.md && grep -q 'web search' PROMPTS/10-ideate.md && grep -q 'ideas.yaml' PROMPTS/10-ideate.md && echo 'PASS'",
+      "priority": "P0",
+      "passes": false
+    },
+    {
+      "id": "US-010",
+      "title": "Seed Initial Ideas Backlog",
+      "description": "As a content creator I want to have 5-10 starter ideas in ideas.yaml so that I can immediately select one to work on.",
+      "acceptance_criteria": [
+        "ideas.yaml is valid YAML",
+        "ideas.yaml contains at least 5 idea entries",
+        "Each entry has required fields: id, title, lane, effort, hook, audience, artifacts, status, created",
+        "Ideas span at least 2 different content lanes",
+        "At least 1 idea each of small, medium, and large effort"
+      ],
+      "test_command": "python3 -c \"import yaml; data=yaml.safe_load(open('BACKLOG/ideas.yaml')); assert len(data)>=5; print('PASS')\"",
+      "priority": "P1",
+      "passes": false
+    },
+    {
+      "id": "US-011",
+      "title": "Create Studio-Ideate Skill",
+      "description": "As a content creator I want to run /studio-ideate to generate new ideas so that my backlog stays fresh.",
+      "acceptance_criteria": [
+        "Skill definition exists in PROMPTS/skills/studio-ideate.md",
+        "Setup script scripts/setup-skills.sh exists",
+        "Skill content references reading BRAND files first",
+        "Skill content references updating ideas.yaml"
+      ],
+      "test_command": "test -f PROMPTS/skills/studio-ideate.md && test -f scripts/setup-skills.sh && grep -q 'BRAND' PROMPTS/skills/studio-ideate.md && echo 'PASS'",
+      "priority": "P1",
+      "passes": false
+    },
+    {
+      "id": "US-012",
+      "title": "Create Drafting Prompt",
+      "description": "As Claude Code I want to have clear instructions in PROMPTS/30-draft.md so that I can scaffold complete project folders.",
+      "acceptance_criteria": [
+        "30-draft.md explains project folder structure: brief.md, outline.md, draft.md, artifacts/, review/",
+        "30-draft.md defines curiosity mode: shorter, single artifact",
+        "30-draft.md defines deep mode: longer, multiple artifacts",
+        "30-draft.md references BRAND/voice.md for tone guidance"
+      ],
+      "test_command": "grep -q 'brief.md' PROMPTS/30-draft.md && grep -q 'curiosity' PROMPTS/30-draft.md && grep -q 'deep' PROMPTS/30-draft.md && echo 'PASS'",
+      "priority": "P0",
+      "passes": false
+    },
+    {
+      "id": "US-013",
+      "title": "Create Studio-Draft Skill",
+      "description": "As a content creator I want to run /studio-draft <idea-id> to scaffold a project so that I can start writing immediately.",
+      "acceptance_criteria": [
+        "Skill definition exists in PROMPTS/skills/studio-draft.md",
+        "Skill references creating PROJECTS/<slug>/ directory",
+        "Skill references creating brief.md, outline.md, draft.md",
+        "Skill references updating idea status in ideas.yaml"
+      ],
+      "test_command": "test -f PROMPTS/skills/studio-draft.md && grep -q 'PROJECTS' PROMPTS/skills/studio-draft.md && grep -q 'brief.md' PROMPTS/skills/studio-draft.md && echo 'PASS'",
+      "priority": "P1",
+      "passes": false
+    },
+    {
+      "id": "US-014",
+      "title": "Create Artifact Prompt",
+      "description": "As Claude Code I want to have clear instructions in PROMPTS/40-artifacts.md so that I can generate working visualizations.",
+      "acceptance_criteria": [
+        "40-artifacts.md explains three options: p5.js, D3.js, Canvas",
+        "40-artifacts.md references BRAND/visuals/ for style templates",
+        "40-artifacts.md states requirement: artifact must render without console errors",
+        "40-artifacts.md defines graceful degradation: include static fallback image"
+      ],
+      "test_command": "grep -q 'p5.js' PROMPTS/40-artifacts.md && grep -q 'D3' PROMPTS/40-artifacts.md && grep -q 'fallback' PROMPTS/40-artifacts.md && echo 'PASS'",
+      "priority": "P0",
+      "passes": false
+    },
+    {
+      "id": "US-015",
+      "title": "Create Artifact Testing Script",
+      "description": "As Claude Code I want to run scripts/test-artifact.sh <path> so that I can verify visualizations work before proposing them.",
+      "acceptance_criteria": [
+        "scripts/test-artifact.sh exists and is executable",
+        "Script uses Playwright to load HTML file",
+        "Script returns exit code 0 if no console errors",
+        "Script returns exit code 1 if console errors found",
+        "Test fixtures exist: scripts/fixtures/good-artifact.html, scripts/fixtures/bad-artifact.html"
+      ],
+      "test_command": "test -x scripts/test-artifact.sh && test -f scripts/fixtures/good-artifact.html && test -f scripts/fixtures/bad-artifact.html && scripts/test-artifact.sh scripts/fixtures/good-artifact.html && ! scripts/test-artifact.sh scripts/fixtures/bad-artifact.html && echo 'PASS'",
+      "priority": "P1",
+      "passes": false
+    },
+    {
+      "id": "US-016",
+      "title": "Create Reusable Visualization Components",
+      "description": "As Claude Code I want to have template components in BRAND/visuals/components/ so that I can scaffold visualizations quickly.",
+      "acceptance_criteria": [
+        "BRAND/visuals/components/p5-template.html exists with working p5.js setup",
+        "BRAND/visuals/components/d3-template.html exists with working D3.js setup",
+        "Each template includes usage instructions as HTML comments",
+        "Templates pass artifact testing"
+      ],
+      "test_command": "test -f BRAND/visuals/components/p5-template.html && test -f BRAND/visuals/components/d3-template.html && scripts/test-artifact.sh BRAND/visuals/components/p5-template.html && echo 'PASS'",
+      "priority": "P2",
+      "passes": false
+    },
+    {
+      "id": "US-017",
+      "title": "Create Review Prompt",
+      "description": "As Claude Code I want to have clear instructions in PROMPTS/50-review.md so that I can run quality checks.",
+      "acceptance_criteria": [
+        "50-review.md defines checklist items: voice_consistency, technical_accuracy, artifacts_work, has_hook, brand_pillars",
+        "50-review.md explains how to write review/checklist.md",
+        "50-review.md explains how to write review/edits.md",
+        "50-review.md states: never modify draft.md directly"
+      ],
+      "test_command": "grep -q 'voice_consistency' PROMPTS/50-review.md && grep -q 'checklist.md' PROMPTS/50-review.md && grep -q 'never modify draft' PROMPTS/50-review.md && echo 'PASS'",
+      "priority": "P0",
+      "passes": false
+    },
+    {
+      "id": "US-018",
+      "title": "Create Studio-Review Skill",
+      "description": "As a content creator I want to run /studio-review <slug> to check a draft so that I catch issues before publishing.",
+      "acceptance_criteria": [
+        "Skill definition exists in PROMPTS/skills/studio-review.md",
+        "Skill references running artifact tests",
+        "Skill references creating review/checklist.md",
+        "Skill explicitly states: do NOT modify draft.md"
+      ],
+      "test_command": "test -f PROMPTS/skills/studio-review.md && grep -q 'checklist.md' PROMPTS/skills/studio-review.md && grep -qE '(NOT|never|do not).*(modify|edit|change).*draft' PROMPTS/skills/studio-review.md && echo 'PASS'",
+      "priority": "P1",
+      "passes": false
+    },
+    {
+      "id": "US-019",
+      "title": "Create Repurpose Prompt",
+      "description": "As Claude Code I want to have clear instructions in PROMPTS/60-repurpose.md so that I can generate platform variants.",
+      "acceptance_criteria": [
+        "60-repurpose.md explains LinkedIn format: professional tone, 1300 character limit",
+        "60-repurpose.md shows structure: hook, key insight, call to action",
+        "60-repurpose.md specifies output location: platforms/linkedin.md"
+      ],
+      "test_command": "grep -q 'LinkedIn' PROMPTS/60-repurpose.md && grep -q '1300' PROMPTS/60-repurpose.md && grep -q 'platforms/' PROMPTS/60-repurpose.md && echo 'PASS'",
+      "priority": "P1",
+      "passes": false
+    },
+    {
+      "id": "US-020",
+      "title": "Create Publish Prompt",
+      "description": "As Claude Code I want to have clear instructions in PROMPTS/70-publish.md so that I can move content to the site.",
+      "acceptance_criteria": [
+        "70-publish.md explains pre-check: verify review/checklist.md has all items passing",
+        "70-publish.md explains file move: draft.md to SITE/src/content/blog/<slug>.mdx",
+        "70-publish.md defines required MDX frontmatter: title, description, pubDate, tags, lane",
+        "70-publish.md explains error handling if build fails"
+      ],
+      "test_command": "grep -q 'checklist.md' PROMPTS/70-publish.md && grep -q 'SITE/src/content/blog' PROMPTS/70-publish.md && grep -q 'frontmatter' PROMPTS/70-publish.md && echo 'PASS'",
+      "priority": "P1",
+      "passes": false
+    },
+    {
+      "id": "US-021",
+      "title": "Create Studio-Publish Skill",
+      "description": "As a content creator I want to run /studio-publish <slug> to publish a post so that content goes live with minimal friction.",
+      "acceptance_criteria": [
+        "Skill definition exists in PROMPTS/skills/studio-publish.md",
+        "Skill references verifying review checklist passed",
+        "Skill references moving files to SITE/",
+        "Skill references updating idea status to published"
+      ],
+      "test_command": "test -f PROMPTS/skills/studio-publish.md && grep -q 'checklist' PROMPTS/skills/studio-publish.md && grep -q 'SITE' PROMPTS/skills/studio-publish.md && grep -q 'published' PROMPTS/skills/studio-publish.md && echo 'PASS'",
+      "priority": "P1",
+      "passes": false
+    },
+    {
+      "id": "US-022",
+      "title": "Create System Prompt",
+      "description": "As Claude Code I want to read core operating rules from PROMPTS/00-system.md so that I follow the right patterns in every session.",
+      "acceptance_criteria": [
+        "00-system.md states rule: Read BRAND folder before any generation",
+        "00-system.md states rule: Never overwrite Mason's edits",
+        "00-system.md states rule: Prefer presenting options over asking open-ended questions",
+        "00-system.md states rule: Test artifacts before proposing"
+      ],
+      "test_command": "grep -q 'Read BRAND' PROMPTS/00-system.md && grep -q 'Never overwrite' PROMPTS/00-system.md && grep -q 'options' PROMPTS/00-system.md && echo 'PASS'",
+      "priority": "P0",
+      "passes": false
+    },
+    {
+      "id": "US-023",
+      "title": "Create Makefile with Common Commands",
+      "description": "As a content creator I want to run common operations via Make so that commands are discoverable and consistent.",
+      "acceptance_criteria": [
+        "make help target exists",
+        "make setup target exists",
+        "make preview target exists",
+        "make build target exists",
+        "make deploy target exists",
+        "make test target exists",
+        "make validate target exists"
+      ],
+      "test_command": "grep -q 'help:' Makefile && grep -q 'setup:' Makefile && grep -q 'preview:' Makefile && grep -q 'deploy:' Makefile && grep -q 'test:' Makefile && echo 'PASS'",
+      "priority": "P1",
+      "passes": false
+    },
+    {
+      "id": "US-024",
+      "title": "End-to-End Test with Example Post",
+      "description": "As a content creator I want to have one complete example post so that I can verify the entire workflow works.",
+      "acceptance_criteria": [
+        "PROJECTS/example-post/ directory exists",
+        "PROJECTS/example-post/brief.md exists with Scope, Audience, Key Points sections",
+        "PROJECTS/example-post/draft.md exists with complete post content",
+        "PROJECTS/example-post/artifacts/ contains at least one working visualization",
+        "PROJECTS/example-post/review/checklist.md exists with all items marked [x]",
+        "SITE/src/content/blog/example-post.mdx exists with valid frontmatter",
+        "Site builds successfully and contains example-post route"
+      ],
+      "test_command": "test -d PROJECTS/example-post && test -f PROJECTS/example-post/draft.md && test -f SITE/src/content/blog/example-post.mdx && cd SITE && npm run build && test -d dist/blog/example-post && echo 'PASS'",
+      "priority": "P0",
+      "passes": false
+    },
+    {
+      "id": "US-025",
+      "title": "Create Skills Setup Script",
+      "description": "As a content creator I want to run scripts/setup-skills.sh to install skills so that the repo is portable to new machines.",
+      "acceptance_criteria": [
+        "scripts/setup-skills.sh exists and is executable",
+        "Script creates ~/.claude/commands/ directory if needed",
+        "Script symlinks all PROMPTS/skills/*.md files",
+        "Running script twice is idempotent"
+      ],
+      "test_command": "test -x scripts/setup-skills.sh && scripts/setup-skills.sh && test -L ~/.claude/commands/studio-ideate.md && test -L ~/.claude/commands/studio-draft.md && echo 'PASS'",
+      "priority": "P1",
+      "passes": false
+    }
+  ]
+}

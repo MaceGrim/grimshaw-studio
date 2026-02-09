@@ -1,0 +1,20 @@
+# Config files with secrets
+TOOLS/zeitgeist_config.yaml
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Drafts in progress (optional - remove if you want to version drafts)
+# DRAFTS/

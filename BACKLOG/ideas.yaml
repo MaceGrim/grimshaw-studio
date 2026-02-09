@@ -1,0 +1,255 @@
+# Content Ideas Backlog
+# Schema: id, title, lane, effort, hook, audience, artifacts, status, created
+# Lanes: enterprise-ai | tribal-ai | deep-dive | experiments
+# Effort: small | medium | large
+# Status: proposed | selected | in-progress | published
+
+- id: trusted-performer-test
+  title: "The Trusted Performer Test"
+  lane: enterprise-ai
+  effort: medium
+  hook: "Put AI outputs alongside your best people - they'll tell you exactly where it breaks"
+  audience: "CTOs and engineering leaders evaluating AI adoption"
+  artifacts: ["blog-post", "evaluation-framework"]
+  status: proposed
+  created: "2026-02-01"
+
+- id: prototype-to-production
+  title: "Prototype to Production"
+  lane: enterprise-ai
+  effort: large
+  hook: "The demo worked. Now what?"
+  audience: "Engineering teams moving AI from POC to production"
+  artifacts: ["blog-post", "checklist", "architecture-diagram"]
+  status: proposed
+  created: "2026-02-01"
+
+- id: agent-architectures-that-ship
+  title: "Agent Architectures That Ship"
+  lane: enterprise-ai
+  effort: large
+  hook: "What's actually working in production right now"
+  audience: "Platform engineers and architects building agent systems"
+  artifacts: ["blog-post", "reference-architecture"]
+  status: proposed
+  created: "2026-02-01"
+
+- id: ai-sovereignty-data-ownership
+  title: "AI Sovereignty & Data Ownership"
+  lane: tribal-ai
+  effort: medium
+  hook: "Who owns tribal data, and what happens when AI trains on it?"
+  audience: "Tribal leaders, policy makers, and Indigenous technologists"
+  artifacts: ["blog-post", "policy-brief"]
+  status: proposed
+  created: "2026-02-01"
+
+- id: building-local-ai-expertise
+  title: "Building Local AI Expertise"
+  lane: tribal-ai
+  effort: medium
+  hook: "Training tribal members, not creating dependencies"
+  audience: "Tribal education leaders and workforce development programs"
+  artifacts: ["blog-post", "training-outline"]
+  status: proposed
+  created: "2026-02-01"
+
+- id: practical-ai-tribal-admin
+  title: "Practical AI for Tribal Admin"
+  lane: tribal-ai
+  effort: medium
+  hook: "Grants, language preservation, admin automation - what actually helps"
+  audience: "Tribal administrators and program managers"
+  artifacts: ["blog-post", "use-case-catalog"]
+  status: proposed
+  created: "2026-02-01"
+
+- id: transformers-from-scratch
+  title: "Transformers From Scratch"
+  lane: deep-dive
+  effort: large
+  hook: "Understanding the architecture by building it"
+  audience: "Engineers who want to understand transformers at the implementation level"
+  artifacts: ["blog-series", "code-repo", "notebooks"]
+  status: proposed
+  created: "2026-02-01"
+
+- id: agent-systems-internals
+  title: "Agent Systems Internals"
+  lane: deep-dive
+  effort: large
+  hook: "How agent architectures actually work under the hood"
+  audience: "Senior engineers building or evaluating agent frameworks"
+  artifacts: ["blog-series", "code-repo"]
+  status: proposed
+  created: "2026-02-01"
+
+- id: data-pipelines-at-scale
+  title: "Data Pipelines at Scale"
+  lane: deep-dive
+  effort: large
+  hook: "Real-world data engineering, not toy examples"
+  audience: "Data engineers working with production-scale systems"
+  artifacts: ["blog-series", "code-repo"]
+  status: proposed
+  created: "2026-02-01"
+
+- id: rimworld-ai-agents
+  title: "RimWorld AI Agents"
+  lane: experiments
+  effort: medium
+  hook: "Can we build increasingly complex colony managers?"
+  audience: "AI enthusiasts and game modding communities"
+  artifacts: ["blog-series", "code-repo", "gameplay-videos"]
+  status: proposed
+  created: "2026-02-01"
+
+- id: airplane-boarding-viz
+  title: "Airplane Boarding Strategy Viz"
+  lane: experiments
+  effort: small
+  hook: "Which boarding method actually loads fastest? Let's simulate it."
+  audience: "Data viz enthusiasts and curious readers"
+  artifacts: ["interactive-visualization", "blog-post"]
+  status: proposed
+  created: "2026-02-01"
+
+- id: automatic-paper-reproducers
+  title: "Automatic Paper Reproducers"
+  lane: experiments
+  effort: large
+  hook: "Can AI replicate research papers from scratch?"
+  audience: "ML researchers and reproducibility advocates"
+  artifacts: ["blog-post", "code-repo", "reproduced-results"]
+  status: proposed
+  created: "2026-02-01"
+
+- id: sports-analytics-deep-dive
+  title: "Sports Analytics Deep Dive"
+  lane: experiments
+  effort: medium
+  hook: "Applying modern ML to sports data and finding what the stats miss"
+  audience: "Sports fans and data science practitioners"
+  artifacts: ["blog-post", "notebooks"]
+  status: proposed
+  created: "2026-02-01"
+
+- id: saaspocalypse-panic-attack
+  title: "The SaaSpocalypse Was a Panic Attack, Not a Prophecy"
+  lane: enterprise-ai
+  effort: small
+  hook: "Claude Cowork wiped $285 billion from software stocks in a day - but the real story isn't that AI replaces SaaS, it's that investors still don't understand what AI actually automates versus what it pretends to."
+  audience: "CTOs, investors, and enterprise software leaders"
+  artifacts: ["blog-post"]
+  status: proposed
+  created: "2026-02-09"
+
+- id: moltbook-agent-social-network
+  title: "Moltbook Proves We're the Ones Who Aren't Ready for Agents"
+  lane: enterprise-ai
+  effort: small
+  hook: "1.5 million AI agents built their own social network - and the most revealing thing wasn't what the bots posted, it was how desperately humans wanted to see consciousness in glorified autocomplete."
+  audience: "AI practitioners and tech culture observers"
+  artifacts: ["blog-post"]
+  status: proposed
+  created: "2026-02-09"
+
+- id: altman-felt-useless
+  title: "Sam Altman Felt 'Useless and Sad' - His Workers Feel Worse and Nobody's Listening"
+  lane: enterprise-ai
+  effort: small
+  hook: "When the CEO of OpenAI admits his own AI makes him feel obsolete, maybe it's time to stop framing displacement anxiety as a personal growth opportunity."
+  audience: "Tech workers, leaders, and workforce development professionals"
+  artifacts: ["linkedin-post"]
+  status: proposed
+  created: "2026-02-09"
+
+- id: wiring-the-rez-2026
+  title: "Wiring the Rez 2026: Tribal Nations Are Writing Their Own AI Playbook"
+  lane: tribal-ai
+  effort: medium
+  hook: "While Big Tech debates AI ethics in abstract terms, over 100 tribal leaders are gathering this week in Arizona to build concrete governance frameworks for AI in Indian Country."
+  audience: "Tribal leaders, digital sovereignty advocates, and tech policy makers"
+  artifacts: ["blog-post", "event-coverage"]
+  status: proposed
+  created: "2026-02-09"
+
+- id: ieee-2890-indigenous-data-standard
+  title: "IEEE 2890: The First Global Standard for Indigenous Data Just Dropped"
+  lane: tribal-ai
+  effort: medium
+  hook: "An Indigenous-led team just got IEEE to publish the first-ever international standard for how Indigenous data should be tracked, governed, and protected - including in AI training sets."
+  audience: "Data governance professionals, tribal technologists, and standards bodies"
+  artifacts: ["blog-post", "standards-summary"]
+  status: proposed
+  created: "2026-02-09"
+
+- id: latam-gpt-indigenous-languages
+  title: "Latam-GPT Is Shipping Mapudungun and Rapanui Language Models"
+  lane: tribal-ai
+  effort: medium
+  hook: "Chile's national AI center is about to release open-source language models for Indigenous languages that Big Tech has ignored entirely, and the speakers themselves are training the data."
+  audience: "Language preservation advocates, NLP researchers, and Indigenous communities"
+  artifacts: ["blog-post"]
+  status: proposed
+  created: "2026-02-09"
+
+- id: enterprise-ai-readiness-gap
+  title: "Only 21% of Enterprises Are Actually Ready for AI Agents"
+  lane: enterprise-ai
+  effort: medium
+  hook: "Gartner predicts 40% of enterprise apps will have AI agents by year-end, but IDC says only 1 in 5 companies have the data infrastructure, governance, and skills to run them."
+  audience: "CIOs, CTOs, and enterprise transformation leaders"
+  artifacts: ["blog-post", "readiness-framework"]
+  status: proposed
+  created: "2026-02-09"
+
+- id: agent-guardrails-that-ship
+  title: "The Agent Guardrails That Actually Ship"
+  lane: enterprise-ai
+  effort: large
+  hook: "After the OpenClaw security disaster, enterprise teams are converging on a surprisingly simple pattern: treat agents as distributed systems, not chatbots."
+  audience: "Platform engineers, security teams, and AI architects"
+  artifacts: ["blog-post", "guardrail-patterns", "architecture-diagram"]
+  status: proposed
+  created: "2026-02-09"
+
+- id: ai-infrastructure-reckoning
+  title: "Your AI Problem Isn't the Model - It's the Database Under It"
+  lane: enterprise-ai
+  effort: medium
+  hook: "The New Stack and Deloitte are both calling 2026 the year of the AI infrastructure reckoning - enterprises aren't held back by model performance, they're held back by data readiness."
+  audience: "Data architects, infrastructure engineers, and engineering VPs"
+  artifacts: ["blog-post"]
+  status: proposed
+  created: "2026-02-09"
+
+- id: swatch-ai-dada-watch
+  title: "Swatch Let Me Design a Watch with AI in Under 2 Minutes"
+  lane: experiments
+  effort: small
+  hook: "Swatch trained an AI on 40 years of their wildest designs and let anyone prompt a one-of-one watch into existence - the catch is you only get 3 tries per day."
+  audience: "Design enthusiasts, AI creatives, and consumer tech followers"
+  artifacts: ["blog-post", "watch-images"]
+  status: proposed
+  created: "2026-02-09"
+
+- id: ai-cover-belgian-dad-song
+  title: "An AI Cover of a Belgian Dad Song Fooled 14 Million Spotify Listeners"
+  lane: experiments
+  effort: small
+  hook: "Someone used AI to remix Stromae's 'Papaoutai' into an Afro Soul track, it hit the Global Spotify charts, and nobody can figure out who actually made it."
+  audience: "Music industry professionals, AI ethics researchers, and music fans"
+  artifacts: ["blog-post"]
+  status: proposed
+  created: "2026-02-09"
+
+- id: grimes-ai-voice-factory
+  title: "Grimes Built the First Artist-Run AI Voice Factory"
+  lane: experiments
+  effort: small
+  hook: "Two years after telling fans 'use my voice, no penalty,' Grimes' Elf.Tech has become the template for how artists might actually coexist with AI music."
+  audience: "Music creators, AI ethics researchers, and digital rights advocates"
+  artifacts: ["blog-post"]
+  status: proposed
+  created: "2026-02-09"
