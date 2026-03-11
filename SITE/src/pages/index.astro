@@ -1,5 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('portfolio')).sort(
+  (a, b) => new Date(b.data.date ?? 0).getTime() - new Date(a.data.date ?? 0).getTime()
+);
 ---
 
 <BaseLayout title="Grimshaw Studio | AI Strategy & Implementation">
@@ -8,6 +13,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl">
         <p class="text-burnt-orange font-semibold text-sm uppercase tracking-widest mb-4">AI Strategy & Implementation</p>
+        <p class="text-cream/60 text-lg mb-4">Husband. Dad. Sicangu Lakota. Data Scientist. Educator.</p>
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
           Building AI that
           <span class="text-burnt-orange">actually works</span>
@@ -40,24 +46,33 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <!-- About Section -->
   <section id="about" class="py-20 sm:py-24 bg-cream">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mx-auto text-center">
-        <p class="text-burnt-orange font-semibold text-sm uppercase tracking-widest mb-4">About</p>
-        <h2 class="text-3xl sm:text-4xl font-bold text-navy mb-6">
-          AI that serves people, not the other way around.
-        </h2>
-        <p class="text-lg text-navy/70 leading-relaxed mb-4">
-          I'm Mason Grimshaw -- husband, dad to 4, Sicangu Lakota from the Rosebud Reservation, and a Data Scientist/AI Engineer at
-          <a href="https://ode.partners" class="text-burnt-orange hover:underline">Ode Partners</a>.
-        </p>
-        <p class="text-lg text-navy/70 leading-relaxed mb-4">
-          I'm the Vice President of <a href="https://www.indigi-genius.com" class="text-burnt-orange hover:underline">IndigiGenius</a>,
-          where we empower Indigenous communities in computer science and machine learning,
-          and a co-founder of the <a href="https://lakota.aicode.camp" class="text-burnt-orange hover:underline">Lakota AI Code Camp</a>.
-        </p>
-        <p class="text-lg text-navy/70 leading-relaxed">
-          I work at the intersection of enterprise AI systems and community-centered technology.
-          Every project starts with the same question: what problem are we actually solving?
-        </p>
+      <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-10">
+        <div class="flex-shrink-0">
+          <img
+            src="/images/profile.png"
+            alt="Mason Grimshaw"
+            class="w-48 h-48 rounded-full object-cover border-4 border-burnt-orange shadow-lg"
+          />
+        </div>
+        <div class="text-center md:text-left">
+          <p class="text-burnt-orange font-semibold text-sm uppercase tracking-widest mb-4">About</p>
+          <h2 class="text-3xl sm:text-4xl font-bold text-navy mb-6">
+            AI that serves people, not the other way around.
+          </h2>
+          <p class="text-lg text-navy/70 leading-relaxed mb-4">
+            I'm Mason Grimshaw -- husband, dad to 4, Sicangu Lakota from the Rosebud Reservation, and a Data Scientist/AI Engineer at
+            <a href="https://ode.partners" class="text-burnt-orange hover:underline">Ode Partners</a>.
+          </p>
+          <p class="text-lg text-navy/70 leading-relaxed mb-4">
+            I'm the Vice President of <a href="https://www.indigi-genius.com" class="text-burnt-orange hover:underline">IndigiGenius</a>,
+            where we empower Indigenous communities in computer science and machine learning,
+            and a co-founder of the <a href="https://lakota.aicode.camp" class="text-burnt-orange hover:underline">Lakota AI Code Camp</a>.
+          </p>
+          <p class="text-lg text-navy/70 leading-relaxed">
+            I work at the intersection of enterprise AI systems and community-centered technology.
+            Every project starts with the same question: what problem are we actually solving?
+          </p>
+        </div>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8 mt-16">
@@ -100,8 +115,55 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <!-- Projects Section -->
+  <section id="projects" class="py-20 sm:py-24 bg-cream-dark">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="text-burnt-orange font-semibold text-sm uppercase tracking-widest mb-4">Projects</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-navy mb-6">
+          Things I've built.
+        </h2>
+        <p class="text-lg text-navy/70 leading-relaxed mb-12">
+          A mix of production tools, community platforms, and experiments.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {projects.map((project) => (
+          <div class="group bg-white rounded-xl p-8 shadow-sm border border-cream-dark transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg hover:border-burnt-orange/30">
+            <div class="text-center mb-6">
+              <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-burnt-orange/10 text-5xl">
+                {project.data.icon || '📁'}
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-navy mb-2">{project.data.title}</h3>
+            <p class="text-navy/60 leading-relaxed mb-4">{project.data.description}</p>
+            <div class="flex gap-3">
+              {project.data.demo_url && (
+                <a
+                  href={project.data.demo_url}
+                  class="px-4 py-2 border-2 border-burnt-orange text-burnt-orange text-sm font-semibold rounded-md hover:bg-burnt-orange hover:text-cream transition-colors"
+                >
+                  Live Demo
+                </a>
+              )}
+              {project.data.source_url && (
+                <a
+                  href={project.data.source_url}
+                  class="px-4 py-2 border-2 border-burnt-orange text-burnt-orange text-sm font-semibold rounded-md hover:bg-burnt-orange hover:text-cream transition-colors"
+                >
+                  Source Code
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- Work Section -->
-  <section id="work" class="py-20 sm:py-24 bg-cream-dark">
+  <section id="work" class="py-20 sm:py-24 bg-cream">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl">
         <p class="text-burnt-orange font-semibold text-sm uppercase tracking-widest mb-4">Work</p>
@@ -114,21 +176,32 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
 
       <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-white rounded-xl p-8 shadow-sm border border-cream-dark hover:shadow-md transition-shadow">
-          <span class="inline-block px-3 py-1 bg-burnt-orange/10 text-burnt-orange text-xs font-semibold rounded-full mb-4">Enterprise AI</span>
-          <h3 class="text-xl font-bold text-navy mb-2">Coming Soon</h3>
+        <a href="/talks" class="bg-white rounded-xl p-8 shadow-sm border border-cream-dark hover:shadow-md hover:border-burnt-orange/30 transition-all block">
+          <span class="inline-block px-3 py-1 bg-burnt-orange/10 text-burnt-orange text-xs font-semibold rounded-full mb-4">Speaking</span>
+          <h3 class="text-xl font-bold text-navy mb-2">Talks & Panels</h3>
           <p class="text-navy/60 leading-relaxed">
-            Featured projects and case studies will appear here as the studio grows.
+            Presentations on Indigenous data sovereignty, AI in enterprise, and community tech.
           </p>
-        </div>
+          <span class="inline-block mt-4 text-burnt-orange font-medium text-sm">View talks &rarr;</span>
+        </a>
 
-        <div class="bg-white rounded-xl p-8 shadow-sm border border-cream-dark hover:shadow-md transition-shadow">
-          <span class="inline-block px-3 py-1 bg-burnt-orange/10 text-burnt-orange text-xs font-semibold rounded-full mb-4">Writing</span>
-          <h3 class="text-xl font-bold text-navy mb-2">Coming Soon</h3>
+        <!-- <a href="/publications" class="bg-white rounded-xl p-8 shadow-sm border border-cream-dark hover:shadow-md hover:border-burnt-orange/30 transition-all block">
+          <span class="inline-block px-3 py-1 bg-burnt-orange/10 text-burnt-orange text-xs font-semibold rounded-full mb-4">Research</span>
+          <h3 class="text-xl font-bold text-navy mb-2">Publications</h3>
           <p class="text-navy/60 leading-relaxed">
-            Blog posts and articles on AI strategy, tribal tech, and technical deep dives.
+            Academic papers and research at the intersection of data science and community impact.
           </p>
-        </div>
+          <span class="inline-block mt-4 text-burnt-orange font-medium text-sm">View papers &rarr;</span>
+        </a> -->
+
+        <a href="/blog" class="bg-white rounded-xl p-8 shadow-sm border border-cream-dark hover:shadow-md hover:border-burnt-orange/30 transition-all block">
+          <span class="inline-block px-3 py-1 bg-burnt-orange/10 text-burnt-orange text-xs font-semibold rounded-full mb-4">Writing</span>
+          <h3 class="text-xl font-bold text-navy mb-2">Blog</h3>
+          <p class="text-navy/60 leading-relaxed">
+            Posts on AI strategy, tribal tech, technical deep dives, and experiments.
+          </p>
+          <span class="inline-block mt-4 text-burnt-orange font-medium text-sm">Read latest &rarr;</span>
+        </a>
       </div>
     </div>
   </section>

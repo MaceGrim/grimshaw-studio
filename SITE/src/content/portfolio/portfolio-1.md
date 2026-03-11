@@ -1,7 +1,11 @@
 ---
-title: "Portfolio item number 1"
-excerpt: "Short description of portfolio item number 1<br/><img src='/images/500x300.png'>"
+title: "Data Visualization Dashboard"
+description: "Interactive dashboard built with D3.js for exploring complex datasets and generating insights."
+icon: "📊"
+demo_url: "#"
+source_url: "#"
 collection: portfolio
+date: 2024-01-15
 ---
 
-This is an item in your portfolio. It can be have images or nice text. If you name the file .md, it will be parsed as markdown. If you name the file .html, it will be parsed as HTML. 
+Interactive dashboard built with D3.js for exploring complex datasets and generating insights from tribal community data.
